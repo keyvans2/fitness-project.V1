@@ -1,0 +1,33 @@
+@background1: linear-gradient(
+  to right,
+  rgba(247, 225, 225, 0.027),
+  rgba(93, 32, 185, 0.062)
+);
+
+#buttons {
+  color: red;
+  border: 1px solid red;
+}
+@border1: 1px solid red;
+
+#linkOnScroll {
+  color: #ffffff !important;
+  font-weight: normal !important;
+  &::placeholder {
+    color: #ffffff !important;
+  }
+  border-bottom-color: transparent !important ;
+  &:hover {
+    opacity: 0.6 !important;
+  }
+  transition: opacity 0.2s!important ;
+}
+#searchAndSignUpBorder {
+  border: 2px solid #ffffff !important;
+  height: 47px !important;
+  vertical-align: middle !important;
+  &:hover {
+    border-color: #6d6a6a !important;
+    transition: border 0.2s !important;
+  }
+}

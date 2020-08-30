@@ -1,0 +1,27 @@
+{
+    "name": "fitnessProject",
+    "version": "1.0.0",
+    "description": "My tiptop Nuxt.js project",
+    "author": "kvn1372",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
+    },
+    "dependencies": {
+        "eslint": "^7.6.0",
+        "less-loader": "^6.2.0",
+        "nuxt": "^2.0.0",
+        "vue-router": "^3.3.2"
+    },
+    "devDependencies": {
+        "@nuxtjs/style-resources": "^1.0.0"
+    },
+    "eslintConfig": {
+        "globals": {
+            "window": true
+        }
+    }
+}
