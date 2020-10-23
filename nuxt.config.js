@@ -50,11 +50,20 @@ export default {
      */
     css: [
         '@/assets/style/style.css',
+        'quill/dist/quill.snow.css',
+        'quill/dist/quill.bubble.css',
+        'quill/dist/quill.core.css'
+
+
     ],
     /*
      ** Plugins to load before mounting the App
      */
-    plugins: [],
+    plugins: [
+        // '~/plugins/editor.js'
+
+        { src: "~plugins/editor.js", ssr: false },
+    ],
     /*
      ** Nuxt.js dev-modules
      */
@@ -80,3 +89,8 @@ export default {
         extend(config, ctx) {}
     }
 }
+// extend(config, ctx) {
+
+// }
+// }
+// }

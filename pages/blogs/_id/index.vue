@@ -174,7 +174,7 @@
     .relatedTitle {
       border-bottom: 1px solid red;
       width: 97.5%;
-      z-index: 999;
+      z-index: 997;
       font-weight: bold;
       font-family: font1;
       font-size: 20px;

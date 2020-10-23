@@ -1,10 +1,10 @@
 <template>
-  <div class="m-0 p-0">
+  <div class="m-0 p-0 ">
     <header  :class="{scroll:scroll}">
       <div class="container-fluid">
         <transition name="scale" mode="out-in">
           <div class="mobile-search" v-if="fadeInput">
-            <form action>
+            <form >
               <label>
                 <input type="text" placeholder="دنبال چی میگردی؟" />
               </label>
@@ -465,7 +465,7 @@ header {
   position: fixed !important;
   // height: 70px;
   z-index: 999;
-  background-color: rgb(103, 103, 250);
+  background-color: rgb(14, 14, 236);
   // transition: 1s;
   animation: show 0.2s linear forwards;
   // box-shadow: 0 8px 6px -6px black;

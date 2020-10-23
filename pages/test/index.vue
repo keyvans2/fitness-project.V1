@@ -1,132 +1,99 @@
 <template>
-  <div class="p-5">
-   
-    <div class="progress">
-
-      <div class="progressCurrent" :style="checkProgress">
-
-      </div>
-      <!-- <div class="progressCurrent">
-
-      </div>
-      <div class="progressCurrent">
-
-      </div>
-      <div class="progressCurrent">
-
-      </div>
-      <div class="progressCurrent">
-
-      </div> -->
-
+  <div>
+    <div class="outer" ref="container" id="container">
+      <div class="inner" ref="inner" :style="checkSize">1</div>
+      <div class="inner" ref="inner" :style="checkSize">2</div>
+      <div class="inner" ref="inner" :style="checkSize">3</div>
+      <div class="inner" ref="inner" :style="checkSize">4</div>
+      <div class="inner" ref="inner" :style="checkSize">5</div>
+      <div class="inner" ref="inner" :style="checkSize">6</div>
+      <div class="inner" ref="inner" :style="checkSize">7</div>
+      <div class="inner" ref="inner" :style="checkSize">8</div>
+      <div class="inner" ref="inner" :style="checkSize">9</div>
+      <div class="inner" ref="inner" :style="checkSize">10</div>
+      <div class="inner" ref="inner" :style="checkSize">11</div>
+      <div class="inner" ref="inner" :style="checkSize">12</div>
     </div>
-    <div class="container">
-      <div class="row mt-3">
-        <transition name="fadeIn" mode="out-in">
-          <div class="col-lg-12" v-if="current==1">
-            <form action="">
-              <div class="form-group">
-                <input type="text" name="" id="" class="form-control mb-1" placeholder="name...">
-                <input type="text" name="" id="" class="form-control" placeholder="family name...">
-              </div>
-            </form>
-          </div>
-          <div class="col-lg-12" v-if="current==2" :key="2">
-            <form action="">
-              <div class="form-group">
-                <input type="text" name="" id="" class="form-control mb-1" placeholder="name...">
-                <input type="text" name="" id="" class="form-control" placeholder="family name...">
-              </div>
-            </form>
-          </div>
-          <div class="col-lg-12" v-if="current==3" :key="3">
-            <form action="">
-              <div class="form-group">
-                <input type="text" name="" id="" class="form-control mb-1" placeholder="name...">
-                <input type="text" name="" id="" class="form-control" placeholder="family name...">
-              </div>
-            </form>
-          </div>
-        </transition>
-      </div>
-    </div>
-    <button class="btn btn-primary mt-2" @click="addNum" :disabled="current==5">next {{current}}</button>
+    <button type="button" class="btn btn-primary btn-lg" @click="slider('next')">next</button>
+    <button type="button" class="btn btn-primary btn-lg" @click="slider('prev')">left</button>
   </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        current: 1,
-        state: true
-      }
-    },
-    computed: {
-      checkProgress() {
-        switch (this.current) {
-          case 1:
-            return {
-              width: 33.3 + '%'
-            }
-            break;
-          case 2:
-            return {
-              width: 66.6 + '%'
-            }
-            break;
-          case 3:
-            return {
-              width: 99.9 + '%'
-            }
-            break;
-
-          default:
-            break;
+export default {
+  created() {},
+  data() {
+    return {
+      container: "",
+    };
+  },
+  computed: {
+    checkSize() {
+      if (process.browser) {
+        if (screen.width <= 1366 && screen.width >= 1200) {
+          return {
+            width: 33 + "%",
+            marginLeft: 0 + "!important",
+          };
         }
       }
     },
-    methods: {
-      addNum() {
-        if (this.current >= 3) {
-          return false
-        }
-        if (this.current <= 0) {
-          return false
-        }
-        this.current += 1
-      }
+  },
+  mounted() {
+    let t = this;
+    if (process.browser) {
+      window.addEventListener("resize", this.changedSize);
+      this.container = t.$refs["container"].offsetWidth;
     }
-  }
+  },
+  methods: {
+    changedSize() {
+      this.container = this.$refs["container"].offsetWidth;
+      container.scrollLeft -= this.container;
+    },
+    slider(val) {
+      let container = this.$refs["container"];
+
+      if (val === "next") {
+        container.scrollLeft += this.$refs["container"].offsetWidth + 2;
+
+        // container.scrollLeft += this.container;
+      } else {
+        container.scrollLeft -= this.$refs["container"].offsetWidth + 2;
+      }
+      // console.log(this.container);
+    },
+  },
+};
 </script>
 
 <style lang="less">
-  .progress {
-    width: 100%;
-    height: 5px;
-    background-color: rgb(185, 207, 228);
-    position: relative;
-    z-index: 0;
-
-    // .pNum{
-    //         // display: block;
-    //         width: 20px;
-    //         height: 100px;
-    //         background-color: red;
-    //         border-radius: 50%;
-    //         position: absolute;
-    //         z-index: 2;
-    //         top:0;
-    //         padding-top: 9px;
-    //         text-align: center;
-    //         // margin: 0;
-    //     }
-    .progressCurrent {
-      width: 20%;
-      height: 100%;
-      background-color: dodgerblue;
-      transition: width 0.50s;
-    }
-    }
-
+@media only screen and (max-width: 940px) {
+  // .inner {
+  //   width: 50% !important;
+  // }
+}
+.outer {
+  width: 80%;
+  height: 200px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  padding: 0;
+  background-color: dodgerblue;
+  .inner {
+    margin: 0 auto !important;
+    display: inline-block;
+    // width: 33%;
+    height: 200px;
+    background-color: red;
+    box-shadow: 1px 1px 10px #999;
+    // *display: inline; /* For IE7*/
+    // *zoom: 1; /* For IE7*/
+    // vertical-align: top;
+    text-align: center;
+  }
+}
 </style>
